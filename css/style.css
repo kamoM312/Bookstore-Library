@@ -1,10 +1,58 @@
-body{
-	color: white;
-}
-.footer{
+html{
+	overflow-x: hidden;
+
+.form {
+	background-color: lightgray;
 	display: flex;
- 	align-items: center;
-	justify-content: space-between;
-	padding: 10px 0;
-	background-color: black;
+	align-items: center;
+	justify-content: center;
+	padding: 15%;
+
+}
+
+.form form {
+	padding: 5%;
+	background-color: white;
+	width: 250px;
+	text-align: center;
+	border-style: solid;
+	border-color: black;
+}
+
+.form form h4 {
+	font-size: 36px;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+}
+
+.form form .box {
+	width: 100%;
+	margin: 10px 0;
+	color: black;
+	background-color: lightgray;
+	padding: 10px 15px;
+}
+
+.btn {
+	display: inline-block;
+	margin-top: 8px;
+	padding: 5px 15px;
+	cursor: pointer;
+	color: white;
+	font-size: 22px;
+	border-radius: 10px;
+	text-transform: capitalize;
+}
+
+.btn {
+	background-color: blue;
+}
+
+.btn:hover {
+	background-color: red;
+}
+
+.form form p a:hover {
+	color: red;
+	text-decoration: none;
 }
