@@ -2,21 +2,23 @@ html{
 	overflow-x: hidden;
 
 .form {
-	background-color: lightgray;
+	background-color: white;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 15%;
+	padding: 10% 15%;
+
+
 
 }
 
 .form form {
 	padding: 5%;
-	background-color: white;
+	background-color: cyan;
 	width: 250px;
 	text-align: center;
-	border-style: solid;
-	border-color: black;
+	
+	box-shadow: 10px 10px 10px 10px #888888;
 }
 
 .form form h4 {
@@ -29,8 +31,28 @@ html{
 	width: 100%;
 	margin: 10px 0;
 	color: black;
-	background-color: lightgray;
+	background-color: white;
 	padding: 10px 15px;
+
+}
+
+.message{
+	position: sticky;
+	top:0;
+	margin: 0 auto;
+	max-width: 1200px;
+	background-color: white;
+	padding: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	z-index: 10000;
+	gap: 5px;
+}
+
+.message span{
+	font-size: 20px;
+	color: black;
 }
 
 .btn {
