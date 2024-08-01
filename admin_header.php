@@ -2,7 +2,7 @@
 
 	<div class="flex">
 		
-		<a href="admin_home.php">Admin Panel</a>
+		<a href="admin_home.php" class="logo">Admin Panel</a>
 
 		<nav>
 			
@@ -14,7 +14,7 @@
 
 		</nav>
 
-		<!-- Add icons  -->
+		<!-- Add menu button and user button styling -->
 		<div class="icons">
 			
 			<div id="menu-btn" class="fas fa-bars"></div>
