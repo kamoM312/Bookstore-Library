@@ -197,6 +197,7 @@
  	display: none;
  }
 
+/*admin dashboard*/
  .dashboard .box-container{
 	display: grid;
 /*	auto-fit: Fits the current number of columns to the width of the grid*/
@@ -237,7 +238,7 @@
 	}
 }
 
-@media (max-width:768px){
+@media (max-width:950px){
 	#menu-btn{
 		display: inline-block;
 	}
