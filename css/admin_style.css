@@ -3,6 +3,23 @@
  	font-size: 75%;
  }
 
+ body{
+ 	background-color: whitesmoke;
+ }
+
+ section{
+ 	padding: 3rem 2rem;
+ }
+
+ .title{
+ 	text-align: center;
+ 	margin-top: .3rem;
+ 	margin-bottom: 2rem;
+ 	text-transform: uppercase;
+ 	color: darkcyan;
+ 	font-size: 2.8rem;
+ }
+
 
  .header{
  	/* element is positioned based on the user's scroll position */
@@ -158,6 +175,16 @@
  	color: black;
  }
 
+ .message i{
+ 	cursor: pointer;
+ 	color: red;
+ 	font-size: 2.5rem;
+ }
+
+ .message i:hover{
+ 	transform: rotate(90deg);
+ }
+
  @keyframes fadeIn {
  	0%{
  		/* vertical animation */
@@ -169,6 +196,38 @@
  #menu-btn{
  	display: none;
  }
+
+ .dashboard .box-container{
+	display: grid;
+/*	auto-fit: Fits the current number of columns to the width of the grid*/
+	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+	gap: 1.5rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.dashboard .box-container .box{
+	border-radius: 3rem;
+	padding: 2rem;
+	background-color: white;
+	border: solid;
+	text-align: center;
+}
+
+.dashboard .box-container .box h2{
+	font-size: 4rem;
+	color: palevioletred;
+}
+
+.dashboard .box-container .box p{
+	margin-top: 1.5rem;
+	padding: 1.5rem;
+	background-color: darkcyan;
+	color: white;
+	font-size: 1.3rem;
+	border-radius: 3rem;
+}
+
 
 /* media queries */
 
@@ -213,4 +272,15 @@
 		font-size: 50%;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
 
