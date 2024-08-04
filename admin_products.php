@@ -10,6 +10,8 @@ if(!isset($admin_id)) {
 	header('location:login.php');
 };
 
+// CRUD - create
+
 if(isset($_POST['add_product'])){
 	$name = mysqli_real_escape_string($conn, $_POST['name']);
 	$price = $_POST['price'];
@@ -39,6 +41,16 @@ if(isset($_POST['add_product'])){
 		}
 	}
 }
+
+// CRUD - delete
+
+if(isset($_GET['delete'])){
+	$delete_id = $_GET['delete'];
+	mysqli_query($conn, "DELETE FROM Products WHERE ID = '$delete_id'") or die('Query Unsuccessful!');
+	header('location:admin_products.php');
+}
+
+
 
 
 
@@ -90,9 +102,35 @@ if(isset($_POST['add_product'])){
 			
 			<?php 
 
-				
-
+				$select_products = mysqli_query($conn, "SELECT * FROM Products") or die('Query Unsuccessful!');
+				if(mysqli_num_rows($select_products) > 0){ 
+					while ($fetch_products = mysqli_fetch_assoc($select_products)) {
+					
 			?>
+
+				<div class="box">
+					
+					<img src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
+
+					<div class="name"><?php echo $fetch_products['Name']; ?></div>
+					<div class="price"><?php echo $fetch_products['Price']; ?></div>
+
+					<a href="admin_products.php?update=<?php echo $fetch_products['ID']; ?>" class="option-btn">update</a>
+
+					<a href="admin_products.php?delete=<?php echo $fetch_products['ID']; ?>" class="delete-btn" onclick="return confirm('Delete this product?');">delete</a>
+
+
+				</div>
+				<?php 
+
+					}
+				 }else {
+					echo '<p class="empty">No product has been added yet!</p>';
+				}
+
+				?>
+
+		
 
 
 		</div>
@@ -100,7 +138,41 @@ if(isset($_POST['add_product'])){
 
 	</section>
 
+	<section class="edit-product-form">
+		
+		<?php 
 
+			if(isset($_GET['update'])) {
+
+				$update_id = $_GET['update'];
+				$update_query = mysqli_query($conn, "SELECT * FROM Products WHERE ID = '$update_id'") or die("Query Unsuccessful!");
+				if(mysqli_num_rows($update_query) > 0){
+					while($fetch_update = mysqli_fetch_assoc($update_query)){
+
+		?>
+		<form action="" method="post" enctype="multipart/form-data">
+
+			<input type="hidden" name="update_p_id" value="<?php echo $fetch_update['ID']; ?>">
+			<input type="hidden" name="update_old_image" value="<?php echo $fetch_update['Image']; ?>">
+			<img src="img_uploaded/<?php echo $fetch_update['Image']; ?>" alt="">
+			<input class="box" type="text" name="update_name" value="<?php echo $fetch_update['Name']; ?>" placeholder="Enter product name" required>
+			<input class="box" type="number" name="update_price" value="<?php echo $fetch_update['Price']; ?>" placeholder="Enter product price" min="0" required>
+			<input type="file" name="update_image" class="box" accept="image/png, image/jpg, image/jpeg">
+			<input type="submit" name="update_product" value="update" class="btn">
+			<input type="reset" class="option-btn" id="close-update" value="cancel">
+		</form>
+
+		<?php
+					}
+				}
+
+			} else{
+
+			}
+
+		?>
+
+	</section>
 
 
 
