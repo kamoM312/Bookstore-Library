@@ -46,11 +46,42 @@ if(isset($_POST['add_product'])){
 
 if(isset($_GET['delete'])){
 	$delete_id = $_GET['delete'];
+	$delete_image_query = mysqli_query($conn, "SELECT Image FROM Products WHERE ID = '$delete_id'") or die('Query Unsuccessful!');
+	$fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
+	unlink('img_uploaded/'.$fetch_delete_image['Image']);
 	mysqli_query($conn, "DELETE FROM Products WHERE ID = '$delete_id'") or die('Query Unsuccessful!');
 	header('location:admin_products.php');
 }
 
+// CRUD - update
 
+if(isset($_POST['update_product'])){
+	$update_p_id = $_POST['update_p_id'];
+	$update_name = $_POST['update_name'];
+	$update_price = $_POST['update_price'];
+
+	mysqli_query($conn, "UPDATE Products SET Name = '$update_name', Price = '$update_price' WHERE ID = '$update_p_id'") or die('Query Unsuccessful!');
+
+	$update_image = $_FILES['update_image']['name'];
+	$update_image_tmp_name = $_FILES['update_image']['tmp_name'];
+	$update_image_size = $_FILES['update_image']['size'];
+	$update_foler = 'img_uploaded/'.$update_image;
+	$update_old_image = $_POST['update_old_image'];
+
+	if(!empty($update_image)){
+		if($update_image_size > 2000000){
+			$message[] = 'Image ize is too large! Please select a smaller image.';
+		} else {
+			mysqli_query($conn, "UPDATE Products SET Image = '$update_image' WHERE ID = '$update_p_id'") or die('Query Unsuccessful!');
+			move_uploaded_file($update_image_tmp_name, $update_foler);
+			unlink('img_uploaded/'.$update_old_image);
+		}
+	}
+
+	// Return to admin_products.php after crud operation
+	header('location:admin_products.php');
+
+}
 
 
 
@@ -167,7 +198,7 @@ if(isset($_GET['delete'])){
 				}
 
 			} else{
-
+				echo '<script>document.querySelector(".edit-product-form").style.display = "none";</script>';
 			}
 
 		?>
