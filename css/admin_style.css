@@ -133,7 +133,7 @@
  	color: darkcyan;
  }
 
- .btn, .logout-btn{
+ .btn, .logout-btn, .delete-btn, .option-btn{
  	display: inline-block;
  	margin-top: 8px;
  	padding: 5px 15px;
@@ -148,12 +148,45 @@
  	background-color: darkcyan;
  }
 
- .btn:hover, .logout-btn:hover{
+ .option-btn {
+ 	background-color: lawngreen;
+ }
+
+ .delete-btn {
+ 	background-color: red;
+ }
+
+ .btn:hover, .logout-btn:hover {
  	background-color: palevioletred;
  }
 
- .logout-btn{
+ .option-btn:hover{
+ 	background-color: palevioletred;
+ }
+
+ .delete-btn:hover{
+ 	background-color: palevioletred;
+ }
+
+ .logout-btn, .option-btn, .delete-btn{
  	text-decoration: none;
+ }
+
+ .edit-product-form .btn{
+ 	display: inline-block;
+ 	margin-top: 8px;
+ 	padding: 5px 15px;
+ 	cursor: pointer;
+ 	color: white;
+ 	font-size: 22px;
+ 	border-radius: 10px;
+ 	text-transform: capitalize;
+ 	background-color: darkcyan;
+ }
+
+ .edit-product-form .btn:hover{
+ 	color: white;
+ 	background-color: palevioletred;
  }
 
  .message{
@@ -185,6 +218,15 @@
  	transform: rotate(90deg);
  }
 
+ .empty{
+ 	padding: 2rem;
+ 	font-size: 1.3rem;
+ 	border: solid 0.1rem;
+ 	color: red;
+ 	background-color: #F4F1F1;
+ 	text-align: center;
+ }
+
  @keyframes fadeIn {
  	0%{
  		/* vertical animation */
@@ -198,13 +240,15 @@
  }
 
 /*admin dashboard*/
- .dashboard .box-container{
+.dashboard .box-container{
 	display: grid;
 /*	auto-fit: Fits the current number of columns to the width of the grid*/
-	grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-	gap: 1.5rem;
-	max-width: 1200px;
-	margin: 0 auto;
+grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+gap: 1.5rem;
+max-width: 1200px;
+margin: 0 auto;
+/*	Items are positioned at the beginning of the container*/
+align-items: flex-start;
 }
 
 .dashboard .box-container .box{
@@ -228,6 +272,251 @@
 	font-size: 1.3rem;
 	border-radius: 3rem;
 }
+
+/*admin_product.php*/
+
+.add-products form{
+	max-width: 60rem;
+	padding: 2rem;
+	text-align: center;
+	border-radius: 3rem;
+	border: solid black .3rem;
+	margin: 0 auto;
+	background-color: #F4F1F1;
+}
+
+.add-products .btn{
+	color: white;
+	background-color: darkcyan;
+	font-size: 1.8rem;
+	margin-top: 1.3rem;
+	text-transform: uppercase;
+}
+
+.add-products .btn:hover{
+	cursor: pointer;
+	background-color: palevioletred;
+	color: white;
+}
+
+.add-products form h3{
+	font-size: 2.3rem;
+	text-transform: uppercase;
+	margin-bottom: 1.3rem;
+	color: black;
+}
+
+.add-products form .box{
+	width: 90%;
+	margin: .3rem 0;
+
+	
+	font-size: 1.5rem;
+}
+
+/*product CRUD section*/
+.show-products .box-container{
+	display: grid;
+/*	auto-fit: Fits the current number of columns to the width of the grid*/
+grid-template-columns: repeat(auto-fit, 23rem);
+justify-content: center;
+gap: 1.5rem;
+max-width: 1200px;
+margin: 0 auto;
+/*	Items are positioned at the beginning of the container*/
+align-items: flex-start;
+}
+
+.show-products .box-container .box {
+	text-align: center;
+	padding: 2rem;
+	border: .1rem solid;
+	background-color: #F4F1F1;
+	border-radius: 3rem;
+}
+
+.show-products .box-container .box img {
+	height: 27rem;
+	width: 20rem;
+}
+
+.show-products .box-container .box .name {
+	padding: .5rem 0;
+	font-size: 1.3rem;
+	color: black;
+}
+
+.show-products .box-container .box .price {
+	padding: .1rem 0;
+	font-size: 2.3rem;
+	color: red;
+	margin-top: .1rem;
+}
+
+.edit-product-form{
+	min-height: 100vh;
+	background-color: rgba(0, 0, 0, .7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+	overflow-y: scroll;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1200;
+	width: 100%;
+}
+
+.edit-product-form form{
+	width: 50rem;
+	padding: 2rem;
+	text-align: center;
+	border-radius: 3rem;
+	background-color: white;
+}
+
+.edit-product-form form img{
+	height: 27rem;
+	margin-bottom: 1rem;
+}
+
+.edit-product-form form .box{
+	margin: 1rem 0;
+	padding: 1.2rem 1.4rem;
+	border: solid;
+	border-radius: .5rem;
+	background-color: white;
+	font-size: 1.3rem;
+	color: black;
+	width: 100%;
+}
+
+.edit-product-form .btn{
+	margin-top: 0px;
+}
+
+.add-products .title h1{
+	font-size: 29.8rem;
+}
+
+
+/*orders page*/
+.orders .box-container{
+	display: grid;
+/*	auto-fit: Fits the current number of columns to the width of the grid*/
+grid-template-columns: repeat(auto-fit, 23rem);
+justify-content: center;
+gap: 1.5rem;
+max-width: 1200px;
+margin: 0 auto;
+/*	Items are positioned at the beginning of the container*/
+align-items: flex-start;
+}
+
+.orders .box-container .box{
+	background-color: #F4F1F1;
+	border: solid .1rem;
+	padding: 2rem;
+	border-radius: 3rem;
+}
+
+.orders .box-container .box p{
+	font-size: 1.3rem;
+	line-height: 95%;
+}
+
+.orders .box-container .box p span{
+	color: darkcyan;
+}
+
+.orders .box-container .box form select{
+	width: 100%;
+	font-size: 1.3rem;
+	color: white;
+	background-color: darkcyan;
+	border: solid black 0.2rem;
+	text-align: center;
+	padding: 0.5rem;
+}
+
+.orders .box-container .box form{
+	text-align: center;
+}
+
+/*users page*/
+.users .box-container{
+	display: grid;
+/*	auto-fit: Fits the current number of columns to the width of the grid*/
+grid-template-columns: repeat(auto-fit, 23rem);
+gap: 1.5rem;
+align-items: flex-start;
+margin: 0 auto;
+justify-content: center;
+max-width: 1200px;
+}
+
+.users .box-container .box{
+	background-color: #F4F1F1;;
+	border: solid .1rem;
+	padding: 2rem;
+	border-radius: 3rem;
+	height: 100%;
+	text-align: center;
+}
+
+.users .box-container .box p{
+	padding-bottom: .4rem;
+	font-size: 1.3rem;
+	line-height: 100%;
+
+}
+
+.users .box-container .box p span{
+	color: darkcyan ;
+}
+
+.users .box-container .box .delete-btn{
+	margin-top: 0;
+}
+
+/*messages page*/
+.messages .box-container{
+	display: grid;
+/*	auto-fit: Fits the current number of columns to the width of the grid*/
+grid-template-columns: repeat(auto-fit, 23rem);
+gap: 1.5rem;
+align-items: flex-start;
+margin: 0 auto;
+justify-content: center;
+max-width: 1200px;
+}
+
+.messages .box-container .box{
+	background-color: #F4F1F1;;
+	border: solid .1rem;
+	padding: 2rem;
+	border-radius: 3rem;
+	height: 100%;
+	text-align: center;
+}
+
+.messages .box-container .box p{
+	padding-bottom: .4rem;
+	font-size: 1.3rem;
+	line-height: 100%;
+
+}
+
+.messages .box-container .box p span {
+	color: darkcyan ;
+
+}
+
+.messages .box-container .box .delete-btn{
+	margin-top: 0;
+}
+
 
 
 /* media queries */
