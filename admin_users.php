@@ -36,6 +36,7 @@ if(isset($_GET['delete'])){
 <?php include 'admin_header.php'; ?>
 
 <section class="users">
+	<h1 class="title">User Accounts</h1>
 	
 	<div class="box-container">
 		
