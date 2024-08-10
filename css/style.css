@@ -1,5 +1,93 @@
 html{
 	overflow-x: hidden;
+}
+
+.header .header-1 {
+	background-color: #DC4731;
+}
+
+.header .header-1  .flex{
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 1200px;
+}
+
+.header .header-1  .flex .logo {
+	font-size: 3rem;
+	color: #3B0918;
+}
+
+.header .header-1  .flex .logo-nav{
+	margin-left: 30%;
+}
+
+.header .header-1  .flex .logo-nav span{
+	color: #FFF3D9;
+}
+
+.header .header-1  .flex .logo-nav a{
+	text-decoration: none;
+}
+
+.header .header-1  .flex .logo-nav a:hover{
+	text-decoration: underline;
+}
+
+.header .header-1  .flex p a{
+	font-size: 1.3rem;
+	color: #FFF3D9;
+}
+
+.header .header-1  .flex p a:hover {
+	color: #3B0918;
+}
+
+.header .header-2 {
+	background-color: #B8390E;
+	padding: 1.3rem;
+}
+
+.header .header-2  .flex{
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+/*	max-width: 1200px;*/
+}
+
+.header .header-2  .flex .navbar{
+	
+}
+
+.header .header-2  .flex .navbar a{
+	margin: 0 .5rem;
+	font-size: 1rem;
+	color: #FFF3D9;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.header .header-2  .flex .navbar a:hover{
+	color: #3B0918;
+}
+
+.header .header-2  .flex .icons > *{
+	font-size: 1.2rem;
+	color: #FFF3D9;
+	cursor: pointer;
+	margin-left: 1rem;
+}
+
+.header .header-2  .flex .icons > *:hover{
+	color: #3B0918;
+}
+
+#menu-btn{
+	display: none;
+}
+
 
 .form {
 	background-color: white;
@@ -7,14 +95,11 @@ html{
 	align-items: center;
 	justify-content: center;
 	padding: 10% 15%;
-
-
-
 }
 
 .form form {
 	padding: 5%;
-	background-color: cyan;
+	background-color: darkcyan;
 	width: 250px;
 	text-align: center;
 	
@@ -36,6 +121,10 @@ html{
 
 }
 
+.form select{
+	width: 100rem;
+}
+
 .message{
 	position: sticky;
 	top:0;
@@ -55,7 +144,7 @@ html{
 	color: black;
 }
 
-.btn {
+.btn, .option-button, .delete-btn, .white-btn {
 	display: inline-block;
 	margin-top: 8px;
 	padding: 5px 15px;
@@ -66,15 +155,144 @@ html{
 	text-transform: capitalize;
 }
 
-.btn {
+.btn, .white-btn {
 	background-color: blue;
 }
 
-.btn:hover {
+.option-button{
+	background-color: orange;
+}
+
+.btn:hover, .option-button:hover, .delete-btn:hover {
 	background-color: red;
 }
 
+.delete-btn{
+	background-color: yellow;
+}
+
+.form form p a{
+	color: blue;
+}
+
 .form form p a:hover {
-	color: red;
+	color: palevioletred;
 	text-decoration: none;
 }
+
+/*user-box*/
+.header .header-2 .flex .user-box{
+	position: absolute;
+	top: 9rem;
+	right: 2rem;
+	border: 2px solid #B8390E;
+	box-shadow: 10px 10px 5px #3B0918;
+	padding: .5rem 1.5rem;
+	text-align: center;
+
+	display: none;
+	animation: fadeIn .2s linear;
+}
+
+.header .header-2 .flex .user-box.active {
+	display: inline-block;
+}
+
+.header .header-2 .flex .user-box p{
+	color: #3B0918;
+	font-size: 1.3rem;
+}
+
+.header .header-2 .flex .user-box p span{
+	color: #DC4731;
+}
+
+.header .header-2 .flex .user-box .delete-btn{
+	margin-bottom: 1.5rem;
+	background-color: #FFF3D9;
+	color: #3B0918;
+	text-decoration: none;
+	border: solid #DC4731;
+}
+
+.header .header-2 .flex .user-box .delete-btn:hover{
+	color: #FFF3D9;
+	background-color: #DC4731;
+}
+
+
+
+@keyframes fadeIn {
+	0%{
+		transform: translateY(1rem);
+		opacity: .2s;
+	}
+}
+
+/* media queries */
+
+@media (max-width:991px){
+	html{
+		font-size: 55%;
+	}
+}
+
+@media (max-width: 768px){
+	.header .header-2 .flex .navbar{
+		position: absolute;
+		top: 9%; left:0; right: 0;
+		background-color: #DC4731;
+		border-top: solid;
+		border-bottom: solid;
+
+		display: none;
+	}
+
+	.header .header-2 .flex .navbar.active{
+		position: absolute;
+		top: 9%; left:0; right: 0;
+		background-color: #DC4731;
+		border-top: solid;
+		border-bottom: solid;
+
+		display: block;
+	}
+
+	.header .header-2 .flex .navbar a{
+		display: block;
+		margin: 2rem;
+		font-size: 1.3rem;
+	}
+	#menu-btn{
+		display: inline-block;
+	}
+}
+
+@media (max-width:450px){
+	html{
+		font-size: 50%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
