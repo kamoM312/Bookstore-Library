@@ -11,7 +11,7 @@
 	<div class="header-2">
 		<div class="flex">
 			<nav class="navbar">
-				<a href="home.php">home</a>
+				<a href="home_page.php">home</a>
 				<a href="about.php">about</a>
 				<a href="shop.php">shop</a>
 				<a href="contact.php">contact</a>
