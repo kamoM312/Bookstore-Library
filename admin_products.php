@@ -14,6 +14,10 @@ if(!isset($admin_id)) {
 
 if(isset($_POST['add_product'])){
 	$name = mysqli_real_escape_string($conn, $_POST['name']);
+	// adding catogory
+	$category = mysqli_real_escape_string($conn, $_POST['category']);
+	$sale = mysqli_real_escape_string($conn, $_POST['sale']);
+	$new_arrival = mysqli_real_escape_string($conn, $_POST['arrival']);
 	$price = $_POST['price'];
 	$image = $_FILES['image']['name'];
 	$image_size = $_FILES['image']['size'];
@@ -26,7 +30,7 @@ if(isset($_POST['add_product'])){
 	if(mysqli_num_rows($select_product_name) > 0){
 		$message[] = 'Product with that name already exists!';
 	} else {
-		$add_product_query = mysqli_query($conn, "INSERT INTO Products (Name, Price, Image) VALUES ('$name', '$price', '$image')") or die('Query Unsuccessful!');
+		$add_product_query = mysqli_query($conn, "INSERT INTO Products (Name, Price, Image, Category, Sale, New_Arrival) VALUES ('$name', '$price', '$image', '$category', '$sale', '$new_arrival')") or die('Query Unsuccessful!');
 
 		if($add_product_query) {
 			if($image_size > 2000000){
@@ -115,63 +119,86 @@ if(isset($_POST['update_product'])){
 			<h3>Add Products</h3>
 			<input type="text" name="name" placeholder="Enter product name..." class="box" required>
 			<input type="number" min="0" name="price" class="box" placeholder="Enter product price..." required>
-			<input type="file" name ="image" accept="image/png, image/jpg, image/jpeg" class="box" required>
-			<input type="submit" name="add_product" value="Add Product" class="btn">
+			<!-- adding category drop-down list -->
+			<select name="category" size="1" class="box" required>
+				<option value="pick">Select a category:</option>
+				<option value="Crime & Thriller">Crime & Thriller</option>
+				<option value="Fantasy & Sci-Fi">Fantasy & Sci-Fi</option>
+				<option value="Historical">Historical</option>
+				<option value="Horror">Horror</option>			</select>
+
+				<!-- sale status -->
+				<select name="sale" size="1" class="box" required>
+					<option value="select">On Sale?</option>
+					<option value="no">No</option>
+					<option value="yes">Yes</option>
+				</select>
+
+				<!-- new arrival -->
+				<select name="arrival" size="1" class="box" required>
+					<option value="select">New Arrival?</option>
+					<option value="no">No</option>
+					<option value="yes">Yes</option>
+				</select>
 
 
-		</form>
+				<input type="file" name ="image" accept="image/png, image/jpg, image/jpeg" class="box" required>
+				<input type="submit" name="add_product" value="Add Product" class="btn">
 
-	</section>
 
-	<!-- Product CRUD section ends -->
+			</form>
 
-	<!-- Products display section -->
+		</section>
 
-	<section class="show-products">
-		
-		<div class="box-container">
+		<!-- Product CRUD section ends -->
+
+		<!-- Products display section -->
+
+		<section class="show-products">
 			
-			<?php 
+			<div class="box-container">
+				
+				<?php 
 
 				$select_products = mysqli_query($conn, "SELECT * FROM Products") or die('Query Unsuccessful!');
 				if(mysqli_num_rows($select_products) > 0){ 
 					while ($fetch_products = mysqli_fetch_assoc($select_products)) {
-					
-			?>
+						
+						?>
 
-				<div class="box">
-					
-					<img src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
+						<div class="box">
+							
+							<img src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
 
-					<div class="name"><?php echo $fetch_products['Name']; ?></div>
-					<div class="price"><?php echo $fetch_products['Price']; ?></div>
+							<div class="name"><?php echo $fetch_products['Name']; ?></div>
+							<div class="price"><?php echo $fetch_products['Price']; ?></div>
 
-					<a href="admin_products.php?update=<?php echo $fetch_products['ID']; ?>" class="option-btn">update</a>
+							<a href="admin_products.php?update=<?php echo $fetch_products['ID']; ?>" class="option-btn">update</a>
 
-					<a href="admin_products.php?delete=<?php echo $fetch_products['ID']; ?>" class="delete-btn" onclick="return confirm('Delete this product?');">delete</a>
+							<a href="admin_products.php?delete=<?php echo $fetch_products['ID']; ?>" class="delete-btn" onclick="return confirm('Delete this product?');">delete</a>
 
 
-				</div>
-				<?php 
+						</div>
+						<?php 
 
 					}
-				 }else {
+				}else {
 					echo '<p class="empty">No product has been added yet!</p>';
 				}
 
 				?>
 
-		
+				
 
 
-		</div>
+			</div>
 
 
-	</section>
+		</section>
 
-	<section class="edit-product-form">
-		
-		<?php 
+		<section class="edit-product-form">
+			
+			<?php 
 
 			if(isset($_GET['update'])) {
 
@@ -180,20 +207,46 @@ if(isset($_POST['update_product'])){
 				if(mysqli_num_rows($update_query) > 0){
 					while($fetch_update = mysqli_fetch_assoc($update_query)){
 
-		?>
-		<form action="" method="post" enctype="multipart/form-data">
+						?>
+						<form action="" method="post" enctype="multipart/form-data">
 
-			<input type="hidden" name="update_p_id" value="<?php echo $fetch_update['ID']; ?>">
-			<input type="hidden" name="update_old_image" value="<?php echo $fetch_update['Image']; ?>">
-			<img src="img_uploaded/<?php echo $fetch_update['Image']; ?>" alt="">
-			<input class="box" type="text" name="update_name" value="<?php echo $fetch_update['Name']; ?>" placeholder="Enter product name" required>
-			<input class="box" type="number" name="update_price" value="<?php echo $fetch_update['Price']; ?>" placeholder="Enter product price" min="0" required>
-			<input type="file" name="update_image" class="box" accept="image/png, image/jpg, image/jpeg">
-			<input type="submit" name="update_product" value="update" class="btn">
-			<input type="reset" class="option-btn" id="close-update" value="cancel">
-		</form>
+							<input type="hidden" name="update_p_id" value="<?php echo $fetch_update['ID']; ?>">
+							<input type="hidden" name="update_old_image" value="<?php echo $fetch_update['Image']; ?>">
+							<img src="img_uploaded/<?php echo $fetch_update['Image']; ?>" alt="">
+							<input class="box" type="text" name="update_name" value="<?php echo $fetch_update['Name']; ?>" placeholder="Enter product name" required>
+							<input class="box" type="number" name="update_price" value="<?php echo $fetch_update['Price']; ?>" placeholder="Enter product price" min="0" required>
+							<input type="file" name="update_image" class="box" accept="image/png, image/jpg, image/jpeg">
 
-		<?php
+							<!-- adding category drop-down list -->
+							<select class="box" id="category" name="category" size="1">
+								<option value="select">Select a category:</option>
+
+								<option value="Crime & Thriller">Crime & Thriller</option>
+								<option value="Fantasy & Sci-Fi">Fantasy & Sci-Fi</option>
+								<option value="Historical">Hisorical</option>
+								<option value="Horror">Horror</option>
+							</select>
+
+							<!-- sale status -->
+							<select name="sale" size="1" class="box" required>
+								<option value="select">On Sale?</option>
+
+								<option value="no">No</option>
+								<option value="yes">Yes</option>
+							</select>
+
+							<!-- new arrival -->
+							<select name="arrival" size="1" class="box" required>
+								<option value="select">New Arrival?</option>
+								<option value="no">No</option>
+								<option value="yes">Yes</option>
+							</select>
+
+							<input type="submit" name="update_product" value="update" class="btn">
+							<input type="reset" class="option-btn" id="close-update" value="cancel">
+						</form>
+
+						<?php
 					}
 				}
 
@@ -201,11 +254,9 @@ if(isset($_POST['update_product'])){
 				echo '<script>document.querySelector(".edit-product-form").style.display = "none";</script>';
 			}
 
-		?>
+			?>
 
-	</section>
-
-
+		</section>
 
 
 
@@ -225,9 +276,11 @@ if(isset($_POST['update_product'])){
 
 
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-	<script src="js/admin_script.js"></script>
 
-</body>
-</html>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+		<script src="js/admin_script.js"></script>
+
+	</body>
+	</html>
