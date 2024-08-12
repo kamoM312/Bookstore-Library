@@ -64,7 +64,11 @@ if(isset($_POST['update_product'])){
 	$update_name = $_POST['update_name'];
 	$update_price = $_POST['update_price'];
 
-	mysqli_query($conn, "UPDATE Products SET Name = '$update_name', Price = '$update_price' WHERE ID = '$update_p_id'") or die('Query Unsuccessful!');
+	$update_category = $_POST['update_category'];
+	$update_sale = $_POST['update_sale'];
+	$update_arrival =$_POST['update_arrival'];
+
+	mysqli_query($conn, "UPDATE Products SET Name = '$update_name', Price = '$update_price', Category = '$update_category', Sale = '$update_sale', New_Arrival = '$update_arrival' WHERE ID = '$update_p_id'") or die('Query Unsuccessful!');
 
 	$update_image = $_FILES['update_image']['name'];
 	$update_image_tmp_name = $_FILES['update_image']['tmp_name'];
@@ -218,7 +222,7 @@ if(isset($_POST['update_product'])){
 							<input type="file" name="update_image" class="box" accept="image/png, image/jpg, image/jpeg">
 
 							<!-- adding category drop-down list -->
-							<select class="box" id="category" name="category" size="1">
+							<select class="box" id="update_category" name="update_category" size="1">
 								<option value="select">Select a category:</option>
 
 								<option value="Crime & Thriller">Crime & Thriller</option>
@@ -228,7 +232,7 @@ if(isset($_POST['update_product'])){
 							</select>
 
 							<!-- sale status -->
-							<select name="sale" size="1" class="box" required>
+							<select name="update_sale" size="1" class="box" required>
 								<option value="select">On Sale?</option>
 
 								<option value="no">No</option>
@@ -236,7 +240,7 @@ if(isset($_POST['update_product'])){
 							</select>
 
 							<!-- new arrival -->
-							<select name="arrival" size="1" class="box" required>
+							<select name="update_arrival" size="1" class="box" required>
 								<option value="select">New Arrival?</option>
 								<option value="no">No</option>
 								<option value="yes">Yes</option>
