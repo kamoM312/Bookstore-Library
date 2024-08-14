@@ -1,242 +1,384 @@
  <?php
 
-include 'config.php';
+ include 'config.php';
 
-session_start();
+ session_start();
 
-$user_id = $_SESSION['user_id'];
+ $user_id = $_SESSION['user_id'];
 
-if(!isset($user_id)) {
-	header('location:login.php');
-}
+ if(!isset($user_id)) {
+ 	header('location:login.php');
+ }
 
-if(isset($_POST['add_to_cart'])){
+ if(isset($_POST['add_to_cart'])){
 
-	$product_name = $_POST['product_name'];
-	$product_price = $_POST['product_price'];
-	$product_image = $_POST['product_image'];
-	$product_quantity = $_POST['product_quantity'];
+ 	$product_name = $_POST['product_name'];
+ 	$product_price = $_POST['product_price'];
+ 	$product_image = $_POST['product_image'];
+ 	$product_quantity = $_POST['product_quantity'];
 
-	$check_cart_numbers = mysqli_query($conn, "SELECT * FROM Cart WHERE Name = '$product_name' AND User_ID = '$user_id'") or die('Query Unsuccessful!');
+ 	$check_cart_numbers = mysqli_query($conn, "SELECT * FROM Cart WHERE Name = '$product_name' AND User_ID = '$user_id'") or die('Query Unsuccessful!');
 
-	if(mysqli_num_rows($check_cart_numbers) > 0) {
-		$message[] = 'already added to cart';
-	} else {
-		mysqli_query($conn, "INSERT INTO Cart (User_ID, Name, Price, Quantity, Image) VALUES('$user_id', '$product_name', '$product_price','$product_quantity', '$product_image')") or die('Query Unsuccessful!');
-		$message[] = 'Product added to cart.';
-	}
+ 	if(mysqli_num_rows($check_cart_numbers) > 0) {
+ 		$message[] = 'already added to cart';
+ 	} else {
+ 		mysqli_query($conn, "INSERT INTO Cart (User_ID, Name, Price, Quantity, Image) VALUES('$user_id', '$product_name', '$product_price','$product_quantity', '$product_image')") or die('Query Unsuccessful!');
+ 		$message[] = 'Product added to cart.';
+ 	}
 
-}
+ }
 
-?>
+ ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Home</title>
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<meta charset="utf-8">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<title>Home</title>
 
-	<!-- Add icon library -->
-    <link rel="stylesheet" 
-          href=
-"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+ 	<!-- Add icon library -->
+ 	<link rel="stylesheet" 
+ 	href=
+ 	"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-<!-- custom css -->
-	<link rel="stylesheet" href="css/style.css">
-</head>
+ 	<!-- custom css -->
+ 	<link rel="stylesheet" href="css/style.css">
+ </head>
 
-<body>
+ <body>
 
-	<?php include 'header.php'; ?>
+ 	<?php include 'header.php'; ?>
 
-	<section class="home">
-		
-		<div class="content">
-			
-			<h3>We have a book for everyone!</h3>
-			<a href="about.php" class="white-btn">Learn more</a>
+ 	<section class="home">
 
-		</div>
+ 		<div class="content">
 
-	</section>
+ 			<h3>We have a book for everyone!</h3>
+ 			<a href="about.php" class="white-btn">Learn more</a>
 
-	<!-- display products -->
+ 		</div>
 
-<section class="products">
+ 	</section>
 
-	<h1 class="title">New arrivals</h1>
-	
-	<div class="box-container">
+ 	<!-- display products -->
 
-		<!-- <h2>New arrivals</h2> -->
-		
-		<?php 
+ 	<section class="products">
 
-			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE New_Arrival = 'yes'") or die("Query Unsuccessful!");
+ 		<h1 class="title">New arrivals</h1>
 
-			if(mysqli_num_rows($select_products) > 0){
-				while($fetch_products = mysqli_fetch_assoc($select_products)){
-					?>
-					
-					<form method="post" class="box">
-						
-						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
-						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
-						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
-						<input class="qty" type="number" min="1" name="product_quantity" value="1">
+ 		<div class="see-more">
+ 			<a href="shop.php">View More</a>
+ 		</div>
 
-						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
+ 		<div class="box-container">
 
-						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
+ 			<!-- <h2>New arrivals</h2> -->
 
-						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
+ 			<?php 
 
-						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
+ 			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE New_Arrival = 'yes' LIMIT 3") or die("Query Unsuccessful!");
 
-					</form>
-				
-					<?php 
-					}
-					} else {
-						echo '<p class="empty">no products added yet!</p>';
-					} 
-					?>
-				</div>
-
-
-				<!-- sale -->
-				<h1 class="title">On Sale</h1>
-	
-	<div class="box-container">
-
-		
-		
-		<?php 
+ 			if(mysqli_num_rows($select_products) > 0){
+ 				while($fetch_products = mysqli_fetch_assoc($select_products)){
+ 					?>
 
-			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE Sale = 'yes'") or die("Query Unsuccessful!");
+ 					<form method="post" class="box">
 
-			if(mysqli_num_rows($select_products) > 0){
-				while($fetch_products = mysqli_fetch_assoc($select_products)){
-					?>
-					
-					<form method="post" class="box">
-						
-						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
-						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
-						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
-						<input class="qty" type="number" min="1" name="product_quantity" value="1">
+ 						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
+ 						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
+ 						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
+ 						<input class="qty" type="number" min="1" name="product_quantity" value="1">
 
-						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
+ 						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
 
-						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
+ 						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
 
-						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
+ 						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
 
-						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
+ 						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
 
-					</form>
-				
-					<?php 
-					}
-					} else {
-						echo '<p class="empty">no products added yet!</p>';
-					} 
-					?>
-				</div>
+ 					</form>
 
+ 					<?php 
+ 				}
+ 			} else {
+ 				echo '<p class="empty">no products added yet!</p>';
+ 			} 
+ 			?>
+ 		</div>
 
-				<!-- catogories -->
-				<!-- fantasy and sci fi -->
-				<h1 class="title">Fantasy & Sci-Fi</h1>
-	
-	<div class="box-container">
-		
-		<?php 
 
-			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE Category = 'Fantasy & Sci-Fi'") or die("Query Unsuccessful!");
+ 		<!-- sale -->
+ 		<h1 class="title">On Sale</h1>
 
-			if(mysqli_num_rows($select_products) > 0){
-				while($fetch_products = mysqli_fetch_assoc($select_products)){
-					?>
-					
-					<form method="post" class="box">
-						
-						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
-						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
-						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
-						<input class="qty" type="number" min="1" name="product_quantity" value="1">
+ 		<div class="see-more">
+ 			<a href="shop.php">View More</a>
+ 		</div>
 
-						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
+ 		<div class="box-container">
 
-						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
 
-						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
 
-						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
+ 			<?php 
 
-					</form>
-				
-					<?php 
-					}
-					} else {
-						echo '<p class="empty">no products added yet!</p>';
-					} 
-					?>
-				</div>
+ 			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE Sale = 'yes' LIMIT 3") or die("Query Unsuccessful!");
 
-</section>
+ 			if(mysqli_num_rows($select_products) > 0){
+ 				while($fetch_products = mysqli_fetch_assoc($select_products)){
+ 					?>
 
-<!-- about section -->
+ 					<form method="post" class="box">
 
-<section class="about">
-	
-	<div class="flex">
-		
-		<div class="image">
-			
-			<img src="images/library-3679745_1280.jpg" alt="about us image">
+ 						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
+ 						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
+ 						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
+ 						<input class="qty" type="number" min="1" name="product_quantity" value="1">
 
-		</div>
+ 						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
 
-		<div class="content">
-			
-			<h3>about us</h3>
-			<p>some text here..</p>
-			<a href="about.php" class="btn">read more</a>
+ 						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
 
-		</div>
+ 						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
 
-	</div>
+ 						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
 
-</section>
+ 					</form>
 
-<!-- contact us section -->
+ 					<?php 
+ 				}
+ 			} else {
+ 				echo '<p class="empty">no products added yet!</p>';
+ 			} 
+ 			?>
+ 		</div>
 
-<section class="home-contact">
 
-	<div class="content">
-		<h3>reach out to us!</h3>
-	<p>some text</p>
-	<a href="contact.php" class="white-btn">contact us</a>
-	</div>
-	
-</section>
+ 		<!-- catogories -->
+ 		<!-- fantasy and sci fi -->
+ 		<h1 class="title">Fantasy & Sci-Fi</h1>
 
+ 		<div class="see-more">
+ 			<a href="shop.php">View More</a>
+ 		</div>
 
+ 		<div class="box-container">
 
+ 			<?php 
 
+ 			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE Category = 'Fantasy & Sci-Fi' LIMIT 3") or die("Query Unsuccessful!");
 
+ 			if(mysqli_num_rows($select_products) > 0){
+ 				while($fetch_products = mysqli_fetch_assoc($select_products)){
+ 					?>
 
+ 					<form method="post" class="box">
 
- 
+ 						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
+ 						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
+ 						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
+ 						<input class="qty" type="number" min="1" name="product_quantity" value="1">
 
+ 						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
 
+ 						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
 
+ 						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
 
-	<?php include 'footer.php'; ?>
+ 						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
 
-	<script src="js/script.js"></script>
+ 					</form>
 
-</body>
-</html>
+ 					<?php 
+ 				}
+ 			} else {
+ 				echo '<p class="empty">no products added yet!</p>';
+ 			} 
+ 			?>
+ 		</div>
+
+ 		<!-- fantasy and sci fi -->
+ 		<h1 class="title">Crime & Thriller</h1>
+
+ 		<div class="see-more">
+ 			<a href="shop.php">View More</a>
+ 		</div>
+
+ 		<div class="box-container">
+
+ 			<?php 
+
+ 			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE Category = 'Crime & Thriller' LIMIT 3") or die("Query Unsuccessful!");
+
+ 			if(mysqli_num_rows($select_products) > 0){
+ 				while($fetch_products = mysqli_fetch_assoc($select_products)){
+ 					?>
+
+ 					<form method="post" class="box">
+
+ 						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
+ 						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
+ 						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
+ 						<input class="qty" type="number" min="1" name="product_quantity" value="1">
+
+ 						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
+
+ 						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
+
+ 						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
+
+ 						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
+
+ 					</form>
+
+ 					<?php 
+ 				}
+ 			} else {
+ 				echo '<p class="empty">no products added yet!</p>';
+ 			} 
+ 			?>
+ 		</div>
+
+ 		<!-- fantasy and sci fi -->
+ 		<h1 class="title">Historical</h1>
+
+ 		<div class="see-more">
+ 			<a href="shop.php">View More</a>
+ 		</div>
+
+ 		<div class="box-container">
+
+ 			<?php 
+
+ 			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE Category = 'Historical' LIMIT 3") or die("Query Unsuccessful!");
+
+ 			if(mysqli_num_rows($select_products) > 0){
+ 				while($fetch_products = mysqli_fetch_assoc($select_products)){
+ 					?>
+
+ 					<form method="post" class="box">
+
+ 						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
+ 						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
+ 						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
+ 						<input class="qty" type="number" min="1" name="product_quantity" value="1">
+
+ 						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
+
+ 						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
+
+ 						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
+
+ 						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
+
+ 					</form>
+
+ 					<?php 
+ 				}
+ 			} else {
+ 				echo '<p class="empty">no products added yet!</p>';
+ 			} 
+ 			?>
+ 		</div>
+
+ 		<!-- fantasy and sci fi -->
+ 		<h1 class="title">Horror</h1>
+
+ 		<div class="see-more">
+ 			<a href="shop.php">View More</a>
+ 		</div>
+
+ 		<div class="box-container">
+
+ 			<?php 
+
+ 			$select_products = mysqli_query($conn, "SELECT * FROM Products WHERE Category = 'Horror' LIMIT 3") or die("Query Unsuccessful!");
+
+ 			if(mysqli_num_rows($select_products) > 0){
+ 				while($fetch_products = mysqli_fetch_assoc($select_products)){
+ 					?>
+
+ 					<form method="post" class="box">
+
+ 						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
+ 						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
+ 						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
+ 						<input class="qty" type="number" min="1" name="product_quantity" value="1">
+
+ 						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
+
+ 						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
+
+ 						<input type="hidden" name="product_image" value="<?php echo $fetch_products['Image']; ?>">
+
+ 						<input type="submit" name="add_to_cart" value="add to cart" class="btn">					
+
+ 					</form>
+
+ 					<?php 
+ 				}
+ 			} else {
+ 				echo '<p class="empty">no products added yet!</p>';
+ 			} 
+ 			?>
+ 		</div>
+
+ 		<div class="load-more">
+ 			<a href="shop.php" class="white-btn">View All</a>
+ 		</div>
+
+ 	</section>
+
+ 	<!-- about section -->
+
+ 	<section class="about">
+
+ 		<div class="flex">
+
+ 			<div class="image">
+
+ 				<img src="images/library-3679745_1280.jpg" alt="about us image">
+
+ 			</div>
+
+ 			<div class="content">
+
+ 				<h3>about us</h3>
+ 				<p>Quisque non tellus orci ac auctor. Sodales ut eu sem integer vitae. Lorem donec massa sapien faucibus. Id faucibus nisl tincidunt eget nullam non nisi est. Luctus accumsan tortor posuere ac ut consequat. Fusce id velit ut tortor pretium viverra suspendisse. Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque.</p>
+ 				<a href="about.php" class="btn">read more</a>
+
+ 			</div>
+
+ 		</div>
+
+ 	</section>
+
+ 	<!-- contact us section -->
+
+ 	<section class="home-contact">
+
+ 		<div class="content">
+ 			<h3>reach out to us!</h3>
+ 			<p>Venenatis cras sed felis eget. Vitae turpis massa sed elementum tempus egestas sed. Facilisi etiam dignissim diam quis enim. Sed tempus urna et pharetra pharetra massa massa ultricies. Interdum consectetur libero id faucibus nisl.</p>
+ 			<a href="contact.php" class="white-btn">contact us</a>
+ 		</div>
+
+ 	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+ 	<?php include 'footer.php'; ?>
+
+ 	<script src="js/script.js"></script>
+
+ </body>
+ </html>
