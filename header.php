@@ -1,9 +1,23 @@
+<?php
+
+if(isset($message)) {
+	foreach ($message as $message) {
+		echo ' 
+		<div class="message">
+			<span>'.$message.'</span>
+			<i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+		</div>';
+	}
+}
+
+?>
+
 <header class="header">
 	
 	<div class="header-1">
 		<div class="flex">
 			<div class="logo-nav">
-				<a href="home.php" class="logo">Book<span>Worms.</span></a>	
+				<a href="home_page.php" class="logo">Book<span>Worms.</span></a>	
 			</div>
 			<p><a href="register.php">Sign up</a> | <a href="login.php">Sign in</a></p>
 		</div>
