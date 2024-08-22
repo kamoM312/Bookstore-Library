@@ -85,7 +85,7 @@
  						<form method="post">
  							<input type="hidden" name="cart_id" value="<?php echo $fetch_cart['ID']; ?>">
  							<input type="number" min="1" name="cart_quantity" value="<?php echo $fetch_cart['Quantity']; ?>">
- 							<input type="submit" name="update_cart" value="update" class="white-btn">
+ 							<input type="submit" name="update_cart" value="update" class="btn">
  						</form>
  						<div class="sub-total">sub total :<span> R <?php echo $sub_total = ($fetch_cart['Quantity'] * $fetch_cart['Price']); ?></span></div>
  					</div>
@@ -120,14 +120,14 @@
 
 
 
- 
+ 	
 
 
 
 
-	<?php include 'footer.php'; ?>
+ 	<?php include 'footer.php'; ?>
 
-	<script src="js/script.js"></script>
+ 	<script src="js/script.js"></script>
 
-</body>
-</html>
+ </body>
+ </html>
