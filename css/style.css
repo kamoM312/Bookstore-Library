@@ -102,40 +102,51 @@ body{
 
 
 .form {
-	background-color: white;
+	background-color: #FFF3D9;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 10% 15%;
 }
 
 .form form {
-	padding: 5%;
-	background-color: darkcyan;
-	width: 250px;
+	padding: 2rem;
+	background-color: #3B0918;
+	width: 50rem;
 	text-align: center;
-	
+	border: solid #DC4731 .2rem;
 	box-shadow: 10px 10px 10px 10px #888888;
 }
 
 .form form h4 {
-	font-size: 36px;
-	margin-bottom: 10px;
+	font-size: 4rem;
+	margin-bottom: 1rem;
 	text-transform: uppercase;
+	color: #DC4731;
+}
+
+.form form p {
+	font-size: 1.8rem;
+	color: #FFF3D9;
 }
 
 .form form .box {
-	width: 100%;
-	margin: 10px 0;
-	color: black;
-	background-color: white;
-	padding: 10px 15px;
-
+	width: 90%;
+	margin: 1rem;
+	color: #3B0918;
+  	background-color: #FFF3D9;
+	padding: 1.2rem 1.4rem;
+	font-size: 1.8rem;
 }
 
-.form select{
-	width: 100rem;
+.form form input:focus {
+	outline: solid #EE82EE thick;
 }
+
+.form form select:focus {
+	outline: solid #EE82EE thick;
+}
+
+
 
 .empty{
 	padding: 1.5rem;
@@ -229,11 +240,11 @@ body{
 }
 
 .form form p a{
-	color: blue;
+	color: #FF0000;
 }
 
 .form form p a:hover {
-	color: palevioletred;
+	color: #EE82EE;
 	text-decoration: none;
 }
 
@@ -401,6 +412,11 @@ body{
 	color: #3B0918;
 }
 
+.products .box-container .box .qty:focus {
+	border: none;
+	outline: solid #EE82EE thick;
+}
+
 .products .box-container .box .price {
 	padding: 1rem 0;
 	font-size: 2.3rem;
@@ -539,14 +555,14 @@ body{
 }
 
 .home-contact .content h3 {
-	font-size: 2.5rem;
+	font-size: 4rem;
 	text-transform: uppercase;
 }
 
 .home-contact .content p {
 	padding: 1rem 0;
 	line-height: 1.5;
-	font-size: 1.3rem;
+	font-size: 1.8rem;
 }
 
 /*contact page*/
@@ -555,10 +571,20 @@ body{
 	margin: 2rem auto;
 	background-color: #3B0918;
 	border-radius: 3rem;
-	border: solid .2rem #3B0918;
+	border: solid .2rem #DC4731;
 	padding: 3rem;
 	max-width: 30rem;
 
+}
+
+.contact form .flex {
+	display: flex;
+ 	justify-content: center;
+}
+
+.contact form input:focus {
+	outline: solid #EE82EE thick;
+	border: none;
 }
 
 .contact form .box {
@@ -791,6 +817,16 @@ body{
   	flex-flow: column;
 }
 
+.checkout form .flex input:focus {
+	border: none;
+	outline: solid #EE82EE thick;
+}
+
+.checkout form .flex select:focus {
+	border: none;
+	outline: solid #EE82EE thick;
+}
+
 /*orders page*/
 
 .placed-orders .box-container {
@@ -842,6 +878,11 @@ body{
 	padding: 1.2rem 1.4rem;
 	font-size: 2rem;
 	color: #3B0918;
+}
+
+.search-form form input:focus{
+	border: none;
+	outline: solid #EE82EE thick;
 }
 
 .products {
