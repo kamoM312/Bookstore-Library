@@ -160,7 +160,10 @@ if(isset($_POST['order_btn'])){
 				<input type="text" name="country" placeholder="Enter your country " required>
 			</div>
 		</div>
-		<input type="submit" class="btn" name="order_btn" value="order now">
+		<div class="btn-flex">
+			<input type="submit" class="btn" name="order_btn" value="order now">
+		</div>
+		
 		
 	</form>
 
