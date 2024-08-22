@@ -322,7 +322,7 @@ body{
 
 /*user home page*/
 .home{
-	min-height: 60vh;
+	min-height: 110vh;
 	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/home.jpg) no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -489,7 +489,7 @@ body{
 /*heading*/
 
 .heading{
-	min-height: 50vh;
+	min-height: 110vh;
 	display: flex;
 
 	flex-flow: column;
@@ -868,9 +868,27 @@ body{
 
 /* media queries */
 
+@media (max-width: 1300px) {
+	.heading {
+		min-height: 80vh;
+	}
+
+	.home {
+		min-height: 80vh;
+	}
+}
+
 @media (max-width:991px){
 	html{
 		font-size: 55%;
+	}
+
+	.heading {
+		min-height: 60vh;
+	}
+
+	.home {
+		min-height: 60vh;
 	}
 }
 
@@ -915,6 +933,10 @@ body{
 	}
 
 	.heading {
+		min-height: 30vh;
+	}
+
+	.home {
 		min-height: 30vh;
 	}
 
