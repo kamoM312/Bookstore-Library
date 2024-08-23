@@ -79,6 +79,7 @@
 
  						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
  						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
+ 						<div class="name">By: <?php echo $fetch_products['Author']; ?></div>
  						<div class="price">R <?php echo $fetch_products['Price']; ?></div>
  						<input class="qty" type="number" min="1" name="product_quantity" value="1">
 
