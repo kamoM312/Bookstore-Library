@@ -14,6 +14,7 @@ if(!isset($admin_id)) {
 
 if(isset($_POST['add_product'])){
 	$name = mysqli_real_escape_string($conn, $_POST['name']);
+	$author = mysqli_real_escape_string($conn, $_POST['author']);
 	// adding catogory
 	$category = mysqli_real_escape_string($conn, $_POST['category']);
 	$sale = mysqli_real_escape_string($conn, $_POST['sale']);
@@ -30,7 +31,7 @@ if(isset($_POST['add_product'])){
 	if(mysqli_num_rows($select_product_name) > 0){
 		$message[] = 'Product with that name already exists!';
 	} else {
-		$add_product_query = mysqli_query($conn, "INSERT INTO Products (Name, Price, Image, Category, Sale, New_Arrival) VALUES ('$name', '$price', '$image', '$category', '$sale', '$new_arrival')") or die('Query Unsuccessful!');
+		$add_product_query = mysqli_query($conn, "INSERT INTO Products (Name, Author, Price, Image, Category, Sale, New_Arrival) VALUES ('$name', '$author','$price', '$image', '$category', '$sale', '$new_arrival')") or die('Query Unsuccessful!');
 
 		if($add_product_query) {
 			if($image_size > 2000000){
@@ -62,13 +63,14 @@ if(isset($_GET['delete'])){
 if(isset($_POST['update_product'])){
 	$update_p_id = $_POST['update_p_id'];
 	$update_name = $_POST['update_name'];
+	$update_author = $_POST['update_author'];
 	$update_price = $_POST['update_price'];
 
 	$update_category = $_POST['update_category'];
 	$update_sale = $_POST['update_sale'];
 	$update_arrival =$_POST['update_arrival'];
 
-	mysqli_query($conn, "UPDATE Products SET Name = '$update_name', Price = '$update_price', Category = '$update_category', Sale = '$update_sale', New_Arrival = '$update_arrival' WHERE ID = '$update_p_id'") or die('Query Unsuccessful!');
+	mysqli_query($conn, "UPDATE Products SET Name = '$update_name', Author = '$update_author', Price = '$update_price', Category = '$update_category', Sale = '$update_sale', New_Arrival = '$update_arrival' WHERE ID = '$update_p_id'") or die('Query Unsuccessful!');
 
 	$update_image = $_FILES['update_image']['name'];
 	$update_image_tmp_name = $_FILES['update_image']['tmp_name'];
@@ -127,6 +129,7 @@ if(isset($_POST['update_product'])){
 
 			<h3>Add Products</h3>
 			<input type="text" name="name" placeholder="Enter product name..." class="box" required>
+			<input type="text" name="author" placeholder="Enter author(s) name..." class="box" required>
 			<input type="number" min="0" name="price" class="box" placeholder="Enter product price..." required>
 			<!-- adding category drop-down list -->
 			<select name="category" size="1" class="box" required>
@@ -180,6 +183,9 @@ if(isset($_POST['update_product'])){
 							<img src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
 
 							<div class="name"><?php echo $fetch_products['Name']; ?></div>
+
+							<div class="author"><?php echo $fetch_products['Author']; ?></div>
+
 							<div class="price"><?php echo $fetch_products['Price']; ?></div>
 
 							<a href="admin_products.php?update=<?php echo $fetch_products['ID']; ?>" class="option-btn">update</a>
@@ -220,15 +226,17 @@ if(isset($_POST['update_product'])){
 						<form action="" method="post" enctype="multipart/form-data">
 
 							<input type="hidden" name="update_p_id" value="<?php echo $fetch_update['ID']; ?>">
+
 							<input type="hidden" name="update_old_image" value="<?php echo $fetch_update['Image']; ?>">
 							<img src="img_uploaded/<?php echo $fetch_update['Image']; ?>" alt="">
 							<input class="box" type="text" name="update_name" value="<?php echo $fetch_update['Name']; ?>" placeholder="Enter product name" required>
+							<input class="box" type="text" name="update_author" value="<?php echo $fetch_update['Author']; ?>" placeholder="Enter product name" required>
 							<input class="box" type="number" name="update_price" value="<?php echo $fetch_update['Price']; ?>" placeholder="Enter product price" min="0" required>
 							<input type="file" name="update_image" class="box" accept="image/png, image/jpg, image/jpeg">
 
 							<!-- adding category drop-down list -->
 							<select class="box" id="update_category" name="update_category" size="1">
-								<option value="select">Select a category:</option>
+								<option value="<?php echo $fetch_update['Category']; ?>">Category: <?php echo $fetch_update['Category']; ?></option>
 
 								<option value="Crime & Thriller">Crime & Thriller</option>
 								<option value="Fantasy & Sci-Fi">Fantasy & Sci-Fi</option>
@@ -238,7 +246,7 @@ if(isset($_POST['update_product'])){
 
 							<!-- sale status -->
 							<select name="update_sale" size="1" class="box" required>
-								<option value="select">On Sale?</option>
+								<option value="select">On Sale? <?php echo $fetch_update['Sale']; ?></option>
 
 								<option value="no">No</option>
 								<option value="yes">Yes</option>
@@ -246,13 +254,14 @@ if(isset($_POST['update_product'])){
 
 							<!-- new arrival -->
 							<select name="update_arrival" size="1" class="box" required>
-								<option value="select">New Arrival?</option>
+								<option value="select">New Arrival? <?php echo $fetch_update['New_Arrival']; ?></option>
 								<option value="no">No</option>
 								<option value="yes">Yes</option>
 							</select>
-
-							<input type="submit" name="update_product" value="update" class="btn">
+							<div class="flex">
+								<input type="submit" name="update_product" value="update" class="btn">
 							<input type="reset" class="option-btn" id="close-update" value="cancel">
+							</div>
 						</form>
 
 						<?php
