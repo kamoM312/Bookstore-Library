@@ -55,7 +55,7 @@
  	<div class="heading">
 
  		<h3>horror</h3>
- 		<p><a href="home_page.php">home</a> /<a href="shop.php">shop</a> /horror </p>
+ 		<p><a href="home_page.php">home</a> / <a href="shop.php">shop</a> / horror </p>
 
  	</div>
 
