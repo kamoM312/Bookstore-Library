@@ -25,8 +25,7 @@
  		mysqli_query($conn, "INSERT INTO Cart (User_ID, Name, Price, Quantity, Image) VALUES('$user_id', '$product_name', '$product_price','$product_quantity', '$product_image')") or die('Query Unsuccessful!');
  		$message[] = 'Product added to cart.';
  	}
-
- }
+ } 	
 
  ?>
 
@@ -60,6 +59,8 @@
  		</div>
 
  	</section>
+
+ 	<!-- create slide show of best sellers -->
 
  	<!-- display products -->
 
@@ -337,7 +338,7 @@
 
  			<div class="image">
 
- 				<img src="images/library-3679745_1280.jpg" alt="about us image">
+ 				<img src="images/ai-generated-8716779_1280.jpg" alt="about us image">
 
  			</div>
 
