@@ -321,6 +321,7 @@ body{
 	box-shadow: 10px 10px 5px #3B0918;
 	padding: .5rem 1.5rem;
 	text-align: center;
+	background-color: #3B0918;
 
 	display: none;
 	animation: fadeIn .2s linear;
@@ -331,8 +332,8 @@ body{
 }
 
 .header .header-2 .flex .user-box p{
-	color: #3B0918;
-	font-size: 1.3rem;
+	color: #FFF3D9;
+	font-size: 1.8rem;
 }
 
 .header .header-2 .flex .user-box p span{
@@ -341,16 +342,12 @@ body{
 
 .header .header-2 .flex .user-box .delete-btn{
 	margin-bottom: 1.5rem;
-	background-color: #FFF3D9;
+	/*background-color: #FFF3D9;
 	color: #3B0918;
 	text-decoration: none;
-	border: solid #DC4731;
+	border: solid #DC4731;*/
 }
 
-.header .header-2 .flex .user-box .delete-btn:hover{
-	color: #FFF3D9;
-	background-color: #DC4731;
-}
 
 /*footer*/
 .footer {
@@ -953,6 +950,15 @@ body{
 	padding-top: 0;
 }
 
+/*remove cancel order button if payment was completed*/
+.placed-orders .disabled {
+	display: none;
+}
+
+.placed-orders .flex {
+	display: flex;
+	justify-content: center;
+}
 
 
 
@@ -961,7 +967,14 @@ body{
 
 
 
-
+img .data-bs-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: red;
+	border: solid black;
+	font-size: 1.3rem;
+}
 
 
 @keyframes fadeIn {
