@@ -54,7 +54,7 @@
 
  	<div class="heading">
 
- 		<h3>shop</h3>
+ 		<h3>fantasy & sci-fi</h3>
  		<p><a href="home_page.php">home</a> / <a href="shop.php">shop</a> / fantasy & sci-fi </p>
 
  	</div>
