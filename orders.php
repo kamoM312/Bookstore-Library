@@ -10,6 +10,12 @@
  	header('location:login.php');
  }
 
+ if(isset($_GET['delete'])){
+ 	$delete_id = $_GET['delete'];
+ 	mysqli_query($conn, "DELETE FROM Orders WHERE ID = '$delete_id'") or die('Query Unsuccessful!');
+  	$message[] = 'Order was canceled!';
+ }
+
  ?>
 
  <!DOCTYPE html>
@@ -64,6 +70,12 @@
  								<p>your orders : <span><?php echo $fetch_orders['Total_Products'] ?></span></p>
  								<p>total price : <span>R <?php echo $fetch_orders['Total_Price'] ?></span></p>
  								<p>payment status : <span style="color:<?php if ($fetch_orders['Payment_Status'] == 'pending') { echo 'red'; } else { echo 'green'; } ?>;"><?php echo $fetch_orders['Payment_Status']; ?></span></p>
+
+ 								<div class="flex">
+ 									<a href="orders.php?delete=<?php echo $fetch_orders['ID']; ?>" onclick="return confirm('Cancel this order?');" class="delete-btn <?php echo ($fetch_orders['Payment_Status'] == 'pending')?'':'disabled'; ?>">cancel</a>
+ 								</div>
+ 								}
+ 				
  								
  							</div>
 
