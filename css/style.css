@@ -96,6 +96,69 @@ body{
 	color: #3B0918;
 }
 
+/*navbar shop drop-down*/
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 1rem;  
+  border: none;
+  outline: none;
+  color: #FFF3D9;
+  padding-block-start: 0;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+/*  background-color: red;*/
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #DC4731;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #FFF3D9;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*footer shop dropdown*/
+
+.footer .dropdown{
+	float: inherit;
+}
+
+.footer .dropdown .dropbtn{
+	margin: 0;
+	text-transform: lowercase;
+	padding-block: 0;
+	padding-bottom: .4rem;
+	font-size: 1.3rem;
+}
+
+
 #menu-btn{
 	display: none;
 }
@@ -299,7 +362,7 @@ body{
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
 	gap: 1.5rem;
-	padding-bottom: 1rem;
+	padding-bottom: 10rem;
 }
 
 .footer .box-container .box h3 {
@@ -314,7 +377,7 @@ body{
 	display: block;
 	font-size: 1.3rem;
 	color: #FFF3D9;
-	padding: .4rem 0;
+	padding: .4rem 0.5rem;
 	text-decoration: none ;
 }
 
@@ -512,7 +575,7 @@ body{
 	align-items: center;
 	justify-content: center;
 	gap: .5rem;
-	background: url(../images/children-8742495_1280.jpg) no-repeat;
+	background: url(../images/pexels-mikhail-nilov-8391439.jpg) no-repeat;
 	background-size: cover;
 	background-position: center;
 	margin-bottom: .6rem;
@@ -526,18 +589,18 @@ body{
 }
 
 .heading p {
-	font-size: 2.5rem;
-	color: #DC4731;
+	font-size: 3rem;
+	color: #FFF3D9;
 	margin-top: 0;
 }
 
 .heading p a {
-	color: #FFF3D9;
+	color: #FF0000;
 	text-decoration: none;
 }
 
 .heading p a:hover {
-	color: #FFF3D9;
+	color: #EE82EE;
 	text-decoration: underline;
 }
 /*home- contact us section*/
@@ -936,7 +999,7 @@ body{
 @media (max-width: 768px){
 	.header .header-2 .flex .navbar{
 		position: absolute;
-		top: 9%; left:0; right: 0;
+		top: 7%; left:0; right: 0;
 		background-color: #DC4731;
 		border-top: solid;
 		border-bottom: solid;
@@ -946,12 +1009,21 @@ body{
 
 	.header .header-2 .flex .navbar.active{
 		position: absolute;
-		top: 9%; left:0; right: 0;
+		top: 7%; left:0; right: 0;
 		background-color: #DC4731;
 		border-top: solid;
 		border-bottom: solid;
 
 		display: block;
+	}
+
+	.dropdown {
+		float: inherit;
+	}
+
+	.dropdown .dropbtn {
+		margin-inline-start: 1.6rem;
+		font-size: 1.3rem;
 	}
 
 	.header .header-2 .flex .navbar a{
