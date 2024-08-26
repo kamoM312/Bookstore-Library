@@ -90,6 +90,7 @@ body{
 	color: #FFF3D9;
 	cursor: pointer;
 	margin-left: 1rem;
+	text-decoration: none;
 }
 
 .header .header-2  .flex .icons > *:hover{
