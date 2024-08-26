@@ -13,7 +13,11 @@ if(isset($message)) {
 ?>
 
 <header class="header">
-	
+
+<link rel="icon" type="image/x-icon" href=images/icons8-bookstore-66.png>
+
+<a target="_blank" href="https://icons8.com/icon/R1rn7WbAKt5O/bookstore">Bookstore</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
 	<div class="header-1">
 		<div class="flex">
 			<div class="logo-nav">
