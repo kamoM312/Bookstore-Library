@@ -48,10 +48,9 @@ $valid = "true";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	if (empty($_POST['name'])) {
-		$nameErr = "Name is required.";
 		$message[] = 'Name is required';
 		$valid = "false";
-		
+
 	} else {
 		$name = test_input($_POST['name']);
 
@@ -77,7 +76,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$message[] = 'Password is required';
 		$valid = "false";
 	} else {
+
+		// attempt password requirements
 		$pass = test_input($_POST['password']);
+		
+		if (strlen($pass) < 8 || strlen($pass) > 16) {
+			$message[] = "Password should be min 8 characters and max 16 characters";
+			$valid = "false";
+
+		}
+		if (!preg_match("/\d/", $pass)) {
+			$message[] = "Password should contain at least one digit";
+			$valid = "false";
+
+		}
+		if (!preg_match("/[A-Z]/", $pass)) {
+			$message[] = "Password should contain at least one Capital Letter";
+			$valid = "false";
+
+		}
+		if (!preg_match("/[a-z]/", $pass)) {
+			$message[] = "Password should contain at least one small Letter";
+			$valid = "false";
+
+		}
+		if (!preg_match("/\W/", $pass)) {
+			$message[] = "Password should contain at least one special character";
+			$valid = "false";
+
+		}
+		if (preg_match("/\s/", $pass)) {
+			$message[] = "Password should not contain any white space";
+			$valid = "false";
+
+		}
+
+		// end of password requirements
 	}
 
 	if (empty($_POST['cpassword'])) {
@@ -166,6 +200,16 @@ if(isset($message)) {
 				<h4>Register</h4>
 				<input type="text" name="name" placeholder="Name" class="box">
 				<input type="email" name="email" placeholder="Email" class="box">
+				<div class="restrictions">
+					Password must contain:
+					<ul>
+						<li>At least 1 Upper-Case Letter</li>
+						<li>At least 1 Lower-Case Letter</li>
+						<li>At least 1 Number</li>
+						<li>At least 1 Special Character</li>
+						<li>Between 8-16 Characters</li>
+					</ul>
+				</div>
 				<input type="password" name="password" placeholder="password" class="box">
 				<input type="password" name="cpassword" placeholder="confirm password" class="box">
 				<select name="user_type" class="box">
