@@ -61,10 +61,14 @@
  	}
 
  	if (empty($_POST['product_quantity'])) {
- 		$valid = "false";
- 	} else {
- 		$product_quantity = test_input($_POST['product_quantity']);
- 	}
+        $valid = "false";
+    } else {
+        $product_quantity = test_input($_POST['product_quantity']);
+        if (!preg_match("/\d/", $product_quantity) || ($product_quantity < 1)) {
+            $message[] = "Product quantity should be a number equal to or greater than 1";
+            $valid = "false";
+        }
+    }
 
  	if (empty($_POST['product_author'])) {
  		$valid = "false";
