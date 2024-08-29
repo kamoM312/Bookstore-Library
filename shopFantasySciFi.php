@@ -16,13 +16,14 @@
  	$product_price = $_POST['product_price'];
  	$product_image = $_POST['product_image'];
  	$product_quantity = $_POST['product_quantity'];
+ 	$product_author = $_POST['product_author'];
 
  	$check_cart_numbers = mysqli_query($conn, "SELECT * FROM Cart WHERE Name = '$product_name' AND User_ID = '$user_id'") or die('Query Unsuccessful!');
 
  	if(mysqli_num_rows($check_cart_numbers) > 0) {
  		$message[] = 'already added to cart';
  	} else {
- 		mysqli_query($conn, "INSERT INTO Cart (User_ID, Name, Price, Quantity, Image) VALUES('$user_id', '$product_name', '$product_price','$product_quantity', '$product_image')") or die('Query Unsuccessful!');
+ 		mysqli_query($conn, "INSERT INTO Cart (User_ID, Name, Price, Quantity, Image, Author) VALUES('$user_id', '$product_name', '$product_price','$product_quantity', '$product_image', '$product_author')") or die('Query Unsuccessful!');
  		$message[] = 'Product added to cart.';
  	}
 
@@ -84,6 +85,9 @@
  						<input class="qty" type="number" min="1" name="product_quantity" value="1">
 
  						<input type="hidden" name="product_name" value="<?php echo $fetch_products['Name']; ?>">
+
+ 						<input type="hidden" name="product_author" value="<?php echo $fetch_products['Author']; ?>">
+
 
  						<input type="hidden" name="product_price" value="<?php echo $fetch_products['Price']; ?>">
 
