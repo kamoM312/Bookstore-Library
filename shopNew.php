@@ -10,22 +10,88 @@
  	header('location:login.php');
  }
 
- if(isset($_POST['add_to_cart'])){
+ // if(isset($_POST['add_to_cart'])){
 
- 	$product_name = $_POST['product_name'];
- 	$product_price = $_POST['product_price'];
- 	$product_image = $_POST['product_image'];
- 	$product_quantity = $_POST['product_quantity'];
- 	$product_author = $_POST['product_author'];
+ // 	$product_name = $_POST['product_name'];
+ // 	$product_price = $_POST['product_price'];
+ // 	$product_image = $_POST['product_image'];
+ // 	$product_quantity = $_POST['product_quantity'];
+ // 	$product_author = $_POST['product_author'];
 
- 	$check_cart_numbers = mysqli_query($conn, "SELECT * FROM Cart WHERE Name = '$product_name' AND User_ID = '$user_id'") or die('Query Unsuccessful!');
+ // 	$check_cart_numbers = mysqli_query($conn, "SELECT * FROM Cart WHERE Name = '$product_name' AND User_ID = '$user_id'") or die('Query Unsuccessful!');
 
- 	if(mysqli_num_rows($check_cart_numbers) > 0) {
- 		$message[] = 'already added to cart';
+ // 	if(mysqli_num_rows($check_cart_numbers) > 0) {
+ // 		$message[] = 'already added to cart';
+ // 	} else {
+ // 		mysqli_query($conn, "INSERT INTO Cart (User_ID, Name, Price, Quantity, Image, Author) VALUES('$user_id', '$product_name', '$product_price','$product_quantity', '$product_image', '$product_author')") or die('Query Unsuccessful!');
+ // 		$message[] = 'Product added to cart.';
+ // 	}
+
+ // }
+
+  function test_input($data) {
+ 	$data = trim($data);
+ 	$data = stripslashes($data);
+ 	$data = htmlspecialchars($data);
+ 	return $data;
+ }
+
+// $product_name = $product_author = $product_image = $product_price = $product_quantity = "";
+
+ $valid = "true";
+
+ if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+ 	if (empty($_POST['product_name'])) {
+ 		$valid = "false";
  	} else {
- 		mysqli_query($conn, "INSERT INTO Cart (User_ID, Name, Price, Quantity, Image, Author) VALUES('$user_id', '$product_name', '$product_price','$product_quantity', '$product_image', '$product_author')") or die('Query Unsuccessful!');
- 		$message[] = 'Product added to cart.';
+ 		$product_name = test_input($_POST['product_name']);
  	}
+
+ 	if (empty($_POST['product_price'])) {
+ 		$valid = "false";
+ 	} else {
+ 		$product_price = test_input($_POST['product_price']);
+ 	}
+
+ 	if (empty($_POST['product_image'])) {
+ 		$valid = "false";
+ 	} else {
+ 		$product_image = test_input($_POST['product_image']);
+ 	}
+
+ 	if (empty($_POST['product_quantity'])) {
+ 		$valid = "false";
+ 	} else {
+ 		$product_quantity = test_input($_POST['product_quantity']);
+ 	}
+
+ 	if (empty($_POST['product_author'])) {
+ 		$valid = "false";
+ 	} else {
+ 		$product_author = test_input($_POST['product_author']);
+ 	}
+
+ 	if ($valid == "true"){
+ 		$product_name = mysqli_real_escape_string($conn, $product_name);
+ 		$product_price = mysqli_real_escape_string($conn, $product_price);
+ 		$product_image = mysqli_real_escape_string($conn, $product_image);
+ 		$product_quantity = mysqli_real_escape_string($conn, $product_quantity);
+ 		$product_author = mysqli_real_escape_string($conn, $product_author);
+
+ 		$check_cart_numbers = mysqli_query($conn, "SELECT * FROM Cart WHERE Name = '$product_name' AND User_ID = '$user_id'") or die('Query Unsuccessful!');
+
+ 		if(mysqli_num_rows($check_cart_numbers) > 0) {
+ 			$message[] = 'already added to cart';
+ 		} else {
+ 			mysqli_query($conn, "INSERT INTO Cart (User_ID, Name, Price, Quantity, Image, Author) VALUES('$user_id', '$product_name', '$product_price','$product_quantity', '$product_image', '$product_author')") or die('Query Unsuccessful!');
+ 			$message[] = 'Product added to cart.';
+ 		}
+
+ 	} else {
+ 		$message[] = 'Product values invalid!';
+ 	}
+
 
  }
 
@@ -76,7 +142,7 @@
  				while($fetch_products = mysqli_fetch_assoc($select_products)){
  					?>
 
- 					<form method="post" class="box">
+ 					<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="box">
 
  						<img class="image" src="img_uploaded/<?php echo $fetch_products['Image']; ?>" alt="">
  						<div class="name"><?php echo $fetch_products['Name']; ?></div>	
