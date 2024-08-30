@@ -34,7 +34,7 @@ if(isset($_GET['delete'])){
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Orders</title>
+	<title>Admin: Orders - BookWorms</title>
 
 	<!-- custom css -->
 	<link rel="stylesheet" href="css/admin_style.css">

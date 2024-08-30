@@ -17,7 +17,7 @@ if(!isset($admin_id)) {
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title> Administration Console</title>
+	<title>Administration Console - BookWorms</title>
 
 	<!-- custom css -->
 	<link rel="stylesheet" href="css/admin_style.css">

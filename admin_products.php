@@ -105,7 +105,7 @@ if(isset($_POST['update_product'])){
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Products</title>
+	<title>Admin: Products - BookWorms</title>
 
 	<!-- custom css -->
 	<link rel="stylesheet" href="css/admin_style.css">
