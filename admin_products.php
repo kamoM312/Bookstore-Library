@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+
+
 include 'config.php';
 
 session_start();
@@ -246,7 +249,7 @@ if(isset($_POST['update_product'])){
 
 							<!-- sale status -->
 							<select name="update_sale" size="1" class="box" required>
-								<option value="select">On Sale? <?php echo $fetch_update['Sale']; ?></option>
+								<option value="<?php echo $fetch_update['Sale']; ?>">On Sale? <?php echo $fetch_update['Sale']; ?></option>
 
 								<option value="no">No</option>
 								<option value="yes">Yes</option>
@@ -254,7 +257,7 @@ if(isset($_POST['update_product'])){
 
 							<!-- new arrival -->
 							<select name="update_arrival" size="1" class="box" required>
-								<option value="select">New Arrival? <?php echo $fetch_update['New_Arrival']; ?></option>
+								<option value="<?php echo $fetch_update['New_Arrival']; ?>">New Arrival? <?php echo $fetch_update['New_Arrival']; ?></option>
 								<option value="no">No</option>
 								<option value="yes">Yes</option>
 							</select>
