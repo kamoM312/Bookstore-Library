@@ -103,7 +103,7 @@
  	<head>
  		<meta charset="utf-8">
  		<meta name="viewport" content="width=device-width, initial-scale=1">
- 		<title>contact us</title>
+ 		<title>Contact us - BookWorms</title>
 
  		<!-- Add icon library -->
  		<link rel="stylesheet" 

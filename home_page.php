@@ -34,7 +34,7 @@
  <head>
  	<meta charset="utf-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<title>Home</title>
+ 	<title>Home - BookWorms</title>
 
  	<!-- Add icon library -->
  	<link rel="stylesheet" 
@@ -69,7 +69,7 @@
  		<h1 class="title">New arrivals</h1>
 
  		<div class="see-more">
- 			<a href="shop.php">View More</a>
+ 			<a href="shopNew.php">View More</a>
  		</div>
 
  		<div class="box-container">
@@ -115,7 +115,7 @@
  		<h1 class="title">On Sale</h1>
 
  		<div class="see-more">
- 			<a href="shop.php">View More</a>
+ 			<a href="shopSale.php">View More</a>
  		</div>
 
  		<div class="box-container">
@@ -162,7 +162,7 @@
  		<h1 class="title">Fantasy & Sci-Fi</h1>
 
  		<div class="see-more">
- 			<a href="shop.php">View More</a>
+ 			<a href="shopFantasySciFi.php">View More</a>
  		</div>
 
  		<div class="box-container">
@@ -205,7 +205,7 @@
  		<h1 class="title">Crime & Thriller</h1>
 
  		<div class="see-more">
- 			<a href="shop.php">View More</a>
+ 			<a href="shopCrimeThriller.php">View More</a>
  		</div>
 
  		<div class="box-container">
@@ -248,7 +248,7 @@
  		<h1 class="title">Historical</h1>
 
  		<div class="see-more">
- 			<a href="shop.php">View More</a>
+ 			<a href="shopHistorical.php">View More</a>
  		</div>
 
  		<div class="box-container">
@@ -291,7 +291,7 @@
  		<h1 class="title">Horror</h1>
 
  		<div class="see-more">
- 			<a href="shop.php">View More</a>
+ 			<a href="shopHorror.php">View More</a>
  		</div>
 
  		<div class="box-container">

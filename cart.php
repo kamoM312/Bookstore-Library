@@ -84,7 +84,7 @@
  <head>
  	<meta charset="utf-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<title>cart</title>
+ 	<title>Cart - BookWorms</title>
 
  	<!-- Add icon library -->
  	<link rel="stylesheet" 

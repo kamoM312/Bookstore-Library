@@ -59,7 +59,7 @@ if(isset($_POST['order_btn'])){
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>checkout</title>
+	<title>Checkout - BookWorms</title>
 
 	<!-- Add icon library -->
     <link rel="stylesheet" 
