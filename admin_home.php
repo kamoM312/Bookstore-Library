@@ -55,7 +55,7 @@ if(!isset($admin_id)) {
 				};
 
 			 ?>
-			 <h2><?php echo $total_pendings; ?></h2>
+			 <h2>R <?php echo $total_pendings; ?></h2>
 			 <p>Total Pending Payments</p>
 
 		</div>
@@ -75,7 +75,7 @@ if(!isset($admin_id)) {
 				};
 
 			 ?>
-			 <h2><?php echo $total_completed; ?></h2>
+			 <h2>R <?php echo $total_completed; ?></h2>
 			 <p>Total Completed Payments</p>
 
 		</div>
