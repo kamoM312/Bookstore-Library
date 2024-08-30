@@ -43,7 +43,7 @@
 
  if($_SERVER["REQUEST_METHOD"] == "POST"){
 
- 	if (empty($_POST['product_name'])) {
+ 	if (empty($_POST['product_name'])){
  		$valid = "false";
  	} else {
  		$product_name = test_input($_POST['product_name']);
@@ -108,7 +108,7 @@
  <head>
  	<meta charset="utf-8">
  	<meta name="viewport" content="width=device-width, initial-scale=1">
- 	<title>shop</title>
+ 	<title>Shop: Sale - BookWorms</title>
 
  	<!-- Add icon library -->
  	<link rel="stylesheet" 
