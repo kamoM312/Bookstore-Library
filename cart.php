@@ -1,5 +1,8 @@
  <?php
 
+ ini_set('display_errors', 1);
+
+
  include 'config.php';
 
  session_start();
@@ -11,11 +14,53 @@
  }
 
 // update cart
- if(isset($_POST['update_cart'])) {
- 	$cart_id = $_POST['cart_id'];
- 	$cart_quantity = $_POST['cart_quantity'];
- 	mysqli_query($conn, "UPDATE Cart SET Quantity = '$cart_quantity' WHERE ID = '$cart_id'") or die('Query Unsuccessful!');
- 	$message[] = 'cart quantity has been updated';
+ // if(isset($_POST['update_cart'])) {
+ // 	$cart_id = $_POST['cart_id'];
+ // 	$cart_quantity = $_POST['cart_quantity'];
+ // 	mysqli_query($conn, "UPDATE Cart SET Quantity = '$cart_quantity' WHERE ID = '$cart_id'") or die('Query Unsuccessful!');
+ // 	$message[] = 'cart quantity has been updated';
+ // }
+
+ function test_input($data) {
+ 	$data = trim($data);
+ 	$data = stripslashes($data);
+ 	$data = htmlspecialchars($data);
+ 	return $data;
+ }
+
+ $cart_total = 0;
+ $validUpdate = "true";
+
+
+ if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+ 	if (empty($_POST['cart_id'])) {
+ 		$validUpdate = "false";
+ 		$message[] = 'Product ID missing';
+ 	} else {
+ 		$cart_id = test_input($_POST['cart_id']);
+ 		if (!preg_match("/\d/", $cart_id) || ($cart_id < 1)) {
+ 			$message[] = "Invalid product ID";
+ 			$validUpdate = "false";
+ 		}
+ 	}
+
+ 	if (empty($_POST['cart_quantity'])) {
+ 		$validUpdate = "false";
+ 	} else {
+ 		$cart_quantity = test_input($_POST['cart_quantity']);
+ 		if (!preg_match("/\d/", $cart_quantity) || ($cart_quantity < 1)) {
+ 			$message[] = "Cart quantity should be a number equal to or greater than 1";
+ 			$validUpdate = "false";
+ 		}
+ 	}
+
+ 	if ($validUpdate == "true"){
+ 		$cart_id = mysqli_real_escape_string($conn, $cart_id);
+ 		$cart_quantity = mysqli_real_escape_string($conn, $cart_quantity);
+ 		mysqli_query($conn, "UPDATE Cart SET Quantity = '$cart_quantity' WHERE ID = '$cart_id'") or die('Query Unsuccessful!');
+ 		$message[] = 'cart quantity has been updated';
+ 	}
  }
 
 // delete cart item
@@ -81,8 +126,9 @@
  						<a href="cart.php?delete=<?php echo $fetch_cart['ID'] ?>" class="fas fa-times" onclick="return confirm('This cart item will be removed. Proceed?')"></a>
  						<img src="img_uploaded/<?php echo $fetch_cart['Image']; ?>">
  						<div class="name"><?php echo $fetch_cart['Name']; ?></div>
+ 						<div class="name">By: <?php echo $fetch_cart['Author']; ?></div>
  						<div class="price">R <?php echo $fetch_cart['Price']; ?></div>
- 						<form method="post">
+ 						<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
  							<input type="hidden" name="cart_id" value="<?php echo $fetch_cart['ID']; ?>">
  							<input type="number" min="1" name="cart_quantity" value="<?php echo $fetch_cart['Quantity']; ?>">
  							<input type="submit" name="update_cart" value="update" class="btn">
@@ -91,6 +137,7 @@
  					</div>
 
  					<?php
+ 					// $cart_total = 0;
  					$cart_total += $sub_total;
  				}
  			} else {
@@ -113,16 +160,6 @@
 
 
  	</section>
-
-
-
-
-
-
-
- 	
-
-
 
 
  	<?php include 'footer.php'; ?>
