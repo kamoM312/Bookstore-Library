@@ -165,6 +165,21 @@ body{
 }
 
 
+.form form .restrictions {
+	text-align: left;
+  color: #3B0918;
+  font-size: 1.8rem;
+  border: solid .3rem #DC4731;
+  width: 90%;
+  margin: 1rem auto;
+  padding: 1.2rem 1.4rem;;
+  background: #FFF3D9;
+}
+
+.form form .restrictions li {
+	list-style: none;
+}
+
 .form {
 	background-color: #FFF3D9;
 	display: flex;
