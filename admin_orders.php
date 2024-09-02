@@ -38,8 +38,7 @@ if(isset($_GET['delete'])){
 
 	<!-- custom css -->
 	<link rel="stylesheet" href="css/admin_style.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+	
 	<!-- Add icon library -->
  	<link rel="stylesheet" 
  	href=
@@ -90,8 +89,9 @@ if(isset($_GET['delete'])){
 							<option value="completed">completed</option>
 						</select>
 
-						<input type="submit" name="update_order" value="update" class="option-btn">
-						<a href="admin_orders.php?delete=<?php echo $fetch_orders['ID']; ?>" onclick="return confirm('Delete this order?');" class="delete-btn">Delete</a>
+						<div class="flex-btn"><input type="submit" name="update_order" value="update" class="option-btn">
+						<a href="admin_orders.php?delete=<?php echo $fetch_orders['ID']; ?>" onclick="return confirm('Delete this order?');" class="delete-btn">Delete</a></div>
+						
 
 					</form>
 
@@ -109,8 +109,6 @@ if(isset($_GET['delete'])){
 	</div>
 
 </section>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> 
 
 <script src="js/admin_script.js"></script>
 
