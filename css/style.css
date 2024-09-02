@@ -327,6 +327,11 @@ body{
 	text-decoration: none;
 }
 
+.flex-btn {
+	display: flex;
+	justify-content: space-between;
+}
+
 /*user-box*/
 .header .header-2 .flex .user-box{
 	position: absolute;
