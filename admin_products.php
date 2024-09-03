@@ -155,7 +155,7 @@ if(isset($_POST['update_product'])){
 				</select>
 
 
-				<input type="file" name ="image" accept="image/png, image/jpg, image/jpeg" class="box" required>
+				<input type="file" name ="image" accept="image/png, image/jpg, image/jpeg" class="box" required id="add-products-label">
 				<input type="submit" name="add_product" value="Add Product" class="btn">
 
 
@@ -260,8 +260,8 @@ if(isset($_POST['update_product'])){
 								<option value="yes">Yes</option>
 							</select>
 							<div class="flex">
-								<input type="submit" name="update_product" value="update" class="btn">
-							<input type="reset" class="option-btn" id="close-update" value="cancel">
+								<input type="submit" name="update_product" value="update" class="option-btn">
+							<input type="reset" class="delete-btn" id="close-update" value="cancel">
 							</div>
 						</form>
 
