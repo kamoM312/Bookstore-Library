@@ -23,7 +23,7 @@ if(isset($message)) {
 			<div class="logo-nav">
 				<a href="home_page.php" class="logo">Book<span>Worms.</span></a>	
 			</div>
-			<p><a href="register.php">Sign up</a> | <a href="login.php">Sign in</a></p>
+			<!-- <p><a href="register.php">Sign up</a> | <a href="login.php">Sign in</a></p> -->
 		</div>
 	</div>
 	<div class="header-2">

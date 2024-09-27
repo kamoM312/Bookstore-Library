@@ -256,7 +256,7 @@ body{
 }
 
 .message i:hover{
-/*	transform: rotate(90deg);*/
+	transform: rotate(90deg);
 	cursor: pointer;
 }
 
@@ -557,7 +557,7 @@ body{
 	padding: 1.5rem;
 	background-color: #DC4731;
 
-		border-top: solid #FFF3D9 2rem;
+	border-top: solid #FFF3D9 2rem;
   border-bottom: solid #FFF3D9 2rem;
 }
 
@@ -586,7 +586,7 @@ body{
 /*heading*/
 
 .heading{
-	min-height: 110vh;
+	min-height: 100vh;
 	display: flex;
 
 	flex-flow: column;
@@ -979,13 +979,6 @@ body{
 	display: flex;
 	justify-content: center;
 }
-
-
-
-
-
-
-
 
 img .data-bs-content {
 	position: absolute;
